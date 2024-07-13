@@ -17,7 +17,11 @@ export function Home() {
     api
       .get("/todo")
       .then((response) => {
-        setTasks(response.data);
+        if (Array.isArray(response.data)) {
+          setTasks(response.data);
+        } else {
+          console.error("Dados da API não são um array:", response.data);
+        }
       })
       .catch((error) => {
         console.error("Erro ao buscar tarefas:", error);
@@ -33,9 +37,9 @@ export function Home() {
   const handleDeleteTask = (id) => {
     api
       .delete(`/todo/${id}`)
-      .then((response) => {
+      .then(() => {
         // Atualiza a lista de tasks após a exclusão
-        setTasks(tasks.filter((task) => task.id !== id));
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
       })
       .catch((error) => {
         console.error("Erro ao deletar tarefa:", error);
@@ -43,9 +47,11 @@ export function Home() {
   };
 
   // Filtra as tasks com base no filtro digitado
-  const filteredTasks = tasks.filter((task) =>
-    task.title.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredTasks = Array.isArray(tasks)
+    ? tasks.filter((task) =>
+        task.title.toLowerCase().includes(filter.toLowerCase())
+      )
+    : [];
 
   return (
     <Container>
@@ -67,7 +73,6 @@ export function Home() {
           <p>Nenhuma tarefa encontrada.</p>
         )}
       </div>
-
       <Button title="Cadastrar" onClick={() => navigate("/register")} />
     </Container>
   );
