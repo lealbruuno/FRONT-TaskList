@@ -2,6 +2,8 @@
 
 Task List é a parte Frontend de um  projeto para gerenciar tarefas (CRUD) em React e Java Spring Boot no Backend para praticar os príncípios da programação frontend e backend.
 
+ <img src="https://raw.githubusercontent.com/lealbruuno/FRONT-TaskList/main/src/assets/img.png" />
+
 Projeto Backend [Task List](https://github.com/lealbruuno/BACK-TaskList)
 
 ## 🛠 Tecnologias
