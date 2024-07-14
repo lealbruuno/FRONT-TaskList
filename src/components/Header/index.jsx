@@ -1,5 +1,6 @@
 import { Container } from "./styles";
 import { FaSearch } from "react-icons/fa";
+import Profile1 from "../../assets/profile1.png";
 
 export function Header({ onFilterChange }) {
   // Função chamada sempre que o texto no input muda
@@ -24,7 +25,8 @@ export function Header({ onFilterChange }) {
 
         <nav className="profile">
           <p className="profile-name">Usuário(a)</p>
-          <img className="profile-img" src="/src/assets/profile1.png" alt="Foto" />
+          {/* <img className="profile-img" src="/src/assets/profile1.png" alt="Foto"/> */}
+          <img className="profile-img" src={Profile1} alt="Foto" />
         </nav>
       </header>
     </Container>
